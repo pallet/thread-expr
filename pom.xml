@@ -9,12 +9,12 @@
   </parent>
   <groupId>org.cloudhoist</groupId>
   <artifactId>thread-expr</artifactId>
-  <version>0.1.0-SNAPSHOT</version>
+  <version>1.0.1-SNAPSHOT</version>
   <packaging>jar</packaging>
   <name>thread-expr</name>
   <description>
     Thread-expr provides macros for use within a clojure threaded argument
-    expression (->).
+    expression (-&gt;).
   </description>
   <url>http://palletops.com</url>
   <inceptionYear>2010</inceptionYear>
