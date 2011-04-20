@@ -5,6 +5,20 @@ A library containing macros for use in clojure threading expressions (using ->).
 See [reference documentation](http://pallet.github.com/thread-expr/autodoc/index.html)
 and [annotated source](http://pallet.github.com/thread-expr/marginalia/uberdoc.html).
 
+## Examples
+
+```clojure
+(-> 2
+  (arg-> [x]
+    (* (inc x))))
+```
+
+```clojure
+(-> 1
+  (for-> [x [1 2 3]]
+    (+ x)))
+```
+
 ## Installation
 
 thread-expr is distributed as a jar, and is available in the
