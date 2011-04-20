@@ -1,0 +1,8 @@
+*jar
+lib
+logs
+classes
+target
+snippets
+doc/**
+notes.txt
