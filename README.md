@@ -2,6 +2,23 @@
 
 A library containing macros for use in clojure threading expressions (using ->).
 
+See [reference documentation](http://pallet.github.com/thread-expr/autodoc/index.html)
+and [annotated source](http://pallet.github.com/thread-expr/marginalia/uberdoc.html).
+
+## Examples
+
+```clojure
+(-> 2
+  (arg-> [x]
+    (* (inc x))))
+```
+
+```clojure
+(-> 1
+  (for-> [x [1 2 3]]
+    (+ x)))
+```
+
 ## Installation
 
 thread-expr is distributed as a jar, and is available in the
@@ -11,7 +28,7 @@ Installation is with maven or your favourite maven repository aware build tool.
 
 ### lein/cake project.clj
 
-    :dependencies [[org.cloudhoist/thread-expr "0.1.0"]]
+    :dependencies [[org.cloudhoist/thread-expr "1.0.0"]]
     :repositories {"sonatype"
                    "http://oss.sonatype.org/content/repositories/releases"}
 
@@ -21,7 +38,7 @@ Installation is with maven or your favourite maven repository aware build tool.
       <dependency>
         <groupId>org.cloudhoist</groupId>
         <artifactId>thread-expr</artifactId>
-        <version>0.1.0</version>
+        <version>1.0.0</version>
       </dependency>
     <dependencies>
 
