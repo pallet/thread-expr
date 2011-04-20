@@ -1,0 +1,280 @@
+<html>
+  <head>
+    <title>pallet.thread-expr API reference (thread-expr)</title>
+    <link href="static/favicon.png" rel="icon" />
+    <link href="static/favicon.png" rel="shortcut icon" />
+    <link media="all" type="text/css" href="static/clojure.css" rel="stylesheet" />
+    <link media="all" type="text/css" href="static/wiki.css" rel="stylesheet" />
+    <link media="all" type="text/css" href="static/internal.css" rel="stylesheet" />
+    <!-- TODO: are we using these (from clojure.org)? If so, add the files -->
+    <script src="file/view/code_highlighter.js" type="text/javascript"></script>
+    <script src="file/view/clojure.js" type="text/javascript"></script>
+    <style>.menuWrapper{height: 36px;}</style>
+    <!--[if lte IE 6]>
+    <link rel="stylesheet" href="http://www.wikispaces.com/_/2009051601/s/internal_ie.css" type="text/css" />
+    <![endif]-->
+  </head>
+<!--
+This document was auto-generated from the source by the clojure autodoc system.
+To report errors or ask questions about the overall documentation structure, formatting,
+etc., contact Tom Faulhaber (google mail name: tomfaulhaber).
+For errors in the documentation of a particular namespace, contact the author of that
+namespace.
+-->
+  <body>
+    <div id="AllContentContainer">
+      <div id="Header">
+	<a id="Logo" href="index.html"><img alt="Clojure" height="100" width="100" src="static/clojure-icon.gif" /></a>
+	<h1><a title="page header title" id="page-header" href="index.html">thread-expr</a></h1>
+      </div>
+      <div id="leftcolumn"><div style="text-align: center;"></div>
+<div class="menu">
+  <div class="WikiCustomNav WikiElement wiki">
+    <a class="wiki_link" href="index.html">Overview</a><br />
+    <a class="wiki_link" href="api-index.html">API Index</a><br />
+    <a class="wiki_link" href="#">Namespaces:</a>
+    <ul id="left-sidebar-list">
+      <li><a href="pallet.thread-expr-api.html" class="wiki_link">pallet.thread-expr</a></li>
+    </ul>
+  </div>
+</div>
+</div>
+      <div id="rightcolumn">
+	<div id="Content">
+	  <div class="contentBox"><div class="innerContentBox">
+              <div id="content_view" class="wiki wikiPage">
+                <div id="right-sidebar"><div id="toc">
+  <h1 class="nopad">Table of Contents</h1>
+  <div style="margin-left: 1em;" class="toc-section">
+    <a href="#toc0">Overview</a>
+    <div style="margin-left: 1em;" class="toc-entry">
+      <a href="#pallet.thread-expr/apply-&gt;">apply-&gt;</a>
+    </div><div style="margin-left: 1em;" class="toc-entry">
+      <a href="#pallet.thread-expr/apply-map-&gt;">apply-map-&gt;</a>
+    </div><div style="margin-left: 1em;" class="toc-entry">
+      <a href="#pallet.thread-expr/arg-&gt;">arg-&gt;</a>
+    </div><div style="margin-left: 1em;" class="toc-entry">
+      <a href="#pallet.thread-expr/binding-&gt;">binding-&gt;</a>
+    </div><div style="margin-left: 1em;" class="toc-entry">
+      <a href="#pallet.thread-expr/for-&gt;">for-&gt;</a>
+    </div><div style="margin-left: 1em;" class="toc-entry">
+      <a href="#pallet.thread-expr/if-&gt;">if-&gt;</a>
+    </div><div style="margin-left: 1em;" class="toc-entry">
+      <a href="#pallet.thread-expr/if-not-&gt;">if-not-&gt;</a>
+    </div><div style="margin-left: 1em;" class="toc-entry">
+      <a href="#pallet.thread-expr/let-&gt;">let-&gt;</a>
+    </div><div style="margin-left: 1em;" class="toc-entry">
+      <a href="#pallet.thread-expr/let-with-arg-&gt;">let-with-arg-&gt;</a>
+    </div><div style="margin-left: 1em;" class="toc-entry">
+      <a href="#pallet.thread-expr/when-&gt;">when-&gt;</a>
+    </div><div style="margin-left: 1em;" class="toc-entry">
+      <a href="#pallet.thread-expr/when-let-&gt;">when-let-&gt;</a>
+    </div><div style="margin-left: 1em;" class="toc-entry">
+      <a href="#pallet.thread-expr/when-not-&gt;">when-not-&gt;</a>
+    </div>
+    <br />
+  </div>
+</div>
+</div>
+                <div id="content-tag"><h1 id="overview">API for <span id="namespace-name">pallet.thread-expr</span></h1>
+by <span id="author">Unknown</span><br />
+<br />Usage:
+<pre>
+(ns your-namespace
+  (:require <span id="long-name">pallet.thread-expr</span>))
+</pre><pre>
+</pre><h2>Overview</h2>
+<pre id="namespace-docstr">Macros that can be used in an expression thread</pre>
+<br />
+<h2>Public Variables and Functions</h2>
+<div id="var-entry">
+  <br />
+  <hr />
+  <h2 id="pallet.thread-expr/apply-&gt;">apply-&gt;</h2>
+  <span id="var-type">macro</span><br />
+  <pre id="var-usage">Usage: (apply-&gt; request f &amp; args)
+</pre>
+  <pre id="var-docstr">Apply in a threaded expression.
+e.g.
+   (-&gt; 1
+     (apply-&gt; + [1 2 3]))
+=&gt; 7</pre>
+  
+</div><div id="var-entry">
+  <br />
+  <hr />
+  <h2 id="pallet.thread-expr/apply-map-&gt;">apply-map-&gt;</h2>
+  <span id="var-type">macro</span><br />
+  <pre id="var-usage">Usage: (apply-map-&gt; request f &amp; args)
+</pre>
+  <pre id="var-docstr">Apply in a threaded expression.
+e.g.
+   (-&gt; :a
+     (apply-map-&gt; hash-map 1 {:b 2}))
+=&gt; {:a 1 :b 2}</pre>
+  
+</div><div id="var-entry">
+  <br />
+  <hr />
+  <h2 id="pallet.thread-expr/arg-&gt;">arg-&gt;</h2>
+  <span id="var-type">macro</span><br />
+  <pre id="var-usage">Usage: (arg-&gt; arg [sym] &amp; body)
+</pre>
+  <pre id="var-docstr">Lexically assign the threaded argument to the specified symbol.
+
+(-&gt; 1
+  (arg-&gt; [x] (+ x)))
+
+=&gt; 2</pre>
+  
+</div><div id="var-entry">
+  <br />
+  <hr />
+  <h2 id="pallet.thread-expr/binding-&gt;">binding-&gt;</h2>
+  <span id="var-type">macro</span><br />
+  <pre id="var-usage">Usage: (binding-&gt; arg bindings &amp; body)
+</pre>
+  <pre id="var-docstr">A `binding` form that can appear in a request thread.
+eg.
+   (def *a* 0)
+   (-&gt; 1
+     (binding-&gt; [*a* 1]
+       (+ a)))
+=&gt; 2</pre>
+  
+</div><div id="var-entry">
+  <br />
+  <hr />
+  <h2 id="pallet.thread-expr/for-&gt;">for-&gt;</h2>
+  <span id="var-type">macro</span><br />
+  <pre id="var-usage">Usage: (for-&gt; arg seq-exprs &amp; body)
+</pre>
+  <pre id="var-docstr">Apply a thread expression to a sequence.
+eg.
+   (-&gt; 1
+     (for-&gt; [x [1 2 3]]
+       (+ x)))
+=&gt; 7</pre>
+  
+</div><div id="var-entry">
+  <br />
+  <hr />
+  <h2 id="pallet.thread-expr/if-&gt;">if-&gt;</h2>
+  <span id="var-type">macro</span><br />
+  <pre id="var-usage">Usage: (if-&gt; arg condition form)
+       (if-&gt; arg condition form else-form)
+</pre>
+  <pre id="var-docstr">An `if` form that can appear in a request thread
+eg.
+   (-&gt; 1
+     (if-&gt; true
+       (+ 1)
+       (+ 2)))
+=&gt; 2</pre>
+  
+</div><div id="var-entry">
+  <br />
+  <hr />
+  <h2 id="pallet.thread-expr/if-not-&gt;">if-not-&gt;</h2>
+  <span id="var-type">macro</span><br />
+  <pre id="var-usage">Usage: (if-not-&gt; arg condition form)
+       (if-not-&gt; arg condition form else-form)
+</pre>
+  <pre id="var-docstr">An `if-not` form that can appear in a request thread
+eg.
+   (-&gt; 1
+     (if-not-&gt; true
+       (+ 1)
+       (+ 2)))
+=&gt; 3</pre>
+  
+</div><div id="var-entry">
+  <br />
+  <hr />
+  <h2 id="pallet.thread-expr/let-&gt;">let-&gt;</h2>
+  <span id="var-type">macro</span><br />
+  <pre id="var-usage">Usage: (let-&gt; arg binding &amp; body)
+</pre>
+  <pre id="var-docstr">A `let` form that can appear in a request thread.
+eg.
+   (-&gt; 1
+     (let-&gt; [a 1]
+       (+ a)))
+=&gt; 2</pre>
+  
+</div><div id="var-entry">
+  <br />
+  <hr />
+  <h2 id="pallet.thread-expr/let-with-arg-&gt;">let-with-arg-&gt;</h2>
+  <span id="var-type">macro</span><br />
+  <pre id="var-usage">Usage: (let-with-arg-&gt; arg arg-symbol binding &amp; body)
+</pre>
+  <pre id="var-docstr">A `let` form that can appear in a request thread, and assign the value of the
+threaded arg.
+eg.
+   (-&gt; 1
+     (let-with-arg-&gt; val [a 1]
+       (+ a val)))
+=&gt; 3</pre>
+  
+</div><div id="var-entry">
+  <br />
+  <hr />
+  <h2 id="pallet.thread-expr/when-&gt;">when-&gt;</h2>
+  <span id="var-type">macro</span><br />
+  <pre id="var-usage">Usage: (when-&gt; arg condition &amp; body)
+</pre>
+  <pre id="var-docstr">A `when` form that can appear in a request thread.
+eg.
+   (-&gt; 1
+     (when-&gt; true
+       (+ 1)))
+=&gt; 2</pre>
+  
+</div><div id="var-entry">
+  <br />
+  <hr />
+  <h2 id="pallet.thread-expr/when-let-&gt;">when-let-&gt;</h2>
+  <span id="var-type">macro</span><br />
+  <pre id="var-usage">Usage: (when-let-&gt; arg binding &amp; body)
+</pre>
+  <pre id="var-docstr">A `when-let` form that can appear in a request thread.
+eg.
+   (-&gt; 1
+     (when-let-&gt; [a 1]
+       (+ a)))
+=&gt; 2</pre>
+  
+</div><div id="var-entry">
+  <br />
+  <hr />
+  <h2 id="pallet.thread-expr/when-not-&gt;">when-not-&gt;</h2>
+  <span id="var-type">macro</span><br />
+  <pre id="var-usage">Usage: (when-not-&gt; arg condition &amp; body)
+</pre>
+  <pre id="var-docstr">A `when-not` form that can appear in a request thread.
+eg.
+   (-&gt; 1
+     (when-not-&gt; true
+       (+ 1)))
+=&gt; 2</pre>
+  
+</div>
+
+
+</div>
+              </div>
+            </div>
+          </div>
+	</div>
+	<div id="foot">
+	  <div style="text-align: center;" id="copyright">Copyright (c) 2010 Hugo Duncan</div>
+	</div>
+      </div>
+      <div id="DesignedBy">Logo &amp; site design by <a title="Visit Tom Hickey's website." href="http://www.tomhickey.com">Tom Hickey</a>.<br />
+      Clojure auto-documentation system by Tom Faulhaber.</div>
+    </div>
+    <!-- /AllContentContainer -->
+  </body>
+
+</html>
