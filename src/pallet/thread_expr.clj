@@ -107,12 +107,11 @@
      `(let [arg# ~arg]
         (if-not ~condition
           (-> arg# ~form))))
-  ([arg condition form else-form ]
+  ([arg condition form else-form]
      `(let [arg# ~arg]
         (if-not ~condition
           (-> arg# ~form)
           (-> arg# ~else-form)))))
-
 
 (defmacro arg->
   "Lexically assign the threaded argument to the specified symbol.
@@ -126,8 +125,9 @@
      (-> ~sym ~@body)))
 
 (defmacro let-with-arg->
-  "A `let` form that can appear in a request thread, and assign the value of the
-   threaded arg.
+  "A `let` form that can appear in a request thread, and assign the
+   value of the threaded arg.
+
    eg.
       (-> 1
         (let-with-arg-> val [a 1]
@@ -157,3 +157,21 @@
   [request f & args]
   `(let [request# ~request]
      (apply ~f request# ~@(butlast args) (apply concat ~(last args)))))
+
+(defmacro -->
+  "Similar to `clojure.core/->`, but includes symbol macros  for `when`,
+  `let` and `for` commands on the internal threading
+  expressions. Future iterations will include more symbol macro
+  bindings."
+  [& forms]
+  `(macro/symbol-macrolet
+    [~'when when->
+     ~'when-not when-not->
+     ~'when-let when-let->
+     ~'if if->
+     ~'if-not if-not->
+     ~'for for->
+     ~'let let->
+     ~'apply apply->
+     ~'expose-request-as arg->]
+    (-> ~@forms)))
