@@ -34,7 +34,7 @@
       (-> 1
         (when-not-> true
           (+ 1)))
-   => 2"
+   => 1"
   [arg condition & body]
   `(let [arg# ~arg]
      (if-not ~condition
@@ -58,7 +58,7 @@
       (def *a* 0)
       (-> 1
         (binding-> [*a* 1]
-          (+ a)))
+          (+ *a*)))
    => 2"
   [arg bindings & body]
   `(binding ~bindings
@@ -174,17 +174,17 @@
 
     Examples:
 
-   (--> 5
-    (let [y 1]
-      (for [x (range 3)]
-        (+ x y)))
-    (+ 1))
-    ;=> 12
+     (--> 5
+        (let [y 1]
+          (for [x (range 3)]
+            (+ x y)))
+        (+ 1))
+ => 12
     
-    (--> 5
-     (expose-request-as [x] (+ x))
-     (+ 1))
-     ;=> 11"
+      (--> 5
+           (expose-request-as [x] (+ x))
+           (+ 1))
+ => 11"
   [& forms]
   `(macro/symbol-macrolet
     [~'binding binding->
