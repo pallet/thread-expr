@@ -50,3 +50,13 @@
 
 (deftest apply-map->test
   (is (= {:a 1 :b 2} (-> :a (apply-map-> hash-map 1 {:b 2})))))
+
+(deftest -->test
+  (is (= 12 (--> 5
+                 (let [y 1]
+                   (for [x (range 3)]
+                     (+ x y)))
+                 (+ 1)))
+      (= 11 (--> 5
+                 (expose-request-as [x] (+ x))
+                 (+ 1)))))
