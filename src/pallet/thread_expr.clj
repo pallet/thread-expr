@@ -1,5 +1,6 @@
 (ns pallet.thread-expr
-  "Macros that can be used in an expression thread")
+  "Macros that can be used in an expression thread."
+  (:require [clojure.contrib.macro-utils :as macro]))
 
 (defmacro for->
   "Apply a thread expression to a sequence.
@@ -159,18 +160,40 @@
      (apply ~f request# ~@(butlast args) (apply concat ~(last args)))))
 
 (defmacro -->
-  "Similar to `clojure.core/->`, but includes symbol macros  for `when`,
-  `let` and `for` commands on the internal threading
-  expressions. Future iterations will include more symbol macro
-  bindings."
+  "Similar to `clojure.core/->`, with added symbol macros for the
+  various threading macros found in `pallet.thread-expr`. Currently
+  supported symbol macros are:
+
+* binding
+* for
+* let
+* when, when-not, when-let
+* if, if-not
+* apply
+* expose-request-as (bound to `pallet.thread-expr/arg->`
+
+    Examples:
+
+   (--> 5
+    (let [y 1]
+      (for [x (range 3)]
+        (+ x y)))
+    (+ 1))
+    ;=> 12
+    
+    (--> 5
+     (expose-request-as [x] (+ x))
+     (+ 1))
+     ;=> 11"
   [& forms]
   `(macro/symbol-macrolet
-    [~'when when->
-     ~'when-not when-not->
-     ~'when-let when-let->
+    [~'binding binding->
+     ~'for for->
      ~'if if->
      ~'if-not if-not->
-     ~'for for->
+     ~'when when->
+     ~'when-not when-not->
+     ~'when-let when-let->
      ~'let let->
      ~'apply apply->
      ~'expose-request-as arg->]
