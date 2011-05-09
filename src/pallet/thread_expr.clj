@@ -2,6 +2,13 @@
   "Macros that can be used in an expression thread."
   (:require [clojure.contrib.macro-utils :as macro]))
 
+(defn- for-
+  [arg seq-exprs body]
+  `(reduce #(%2 %1)
+             ~arg
+             (for ~seq-exprs
+               (fn [arg#] (-> arg# ~@body)))))
+
 (defmacro for->
   "Apply a thread expression to a sequence.
    eg.
@@ -10,10 +17,26 @@
           (+ x)))
    => 7"
   [arg seq-exprs & body]
-  `(reduce #(%2 %1)
-           ~arg
-           (for ~seq-exprs
-             (fn [arg#] (-> arg# ~@body)))))
+  (for- arg seq-exprs body))
+
+(defmacro for->>
+  "Apply a thread expression to a sequence.
+   eg.
+      (->> 1
+         (for->> [x [1 2 3]]
+           (+ x)))
+   => 7"
+  [seq-exprs & body]
+  (let [arg (last body)
+        body (butlast body)]
+    (for- arg seq-exprs body)))
+
+(defn- when-
+  [arg condition body]
+  `(let [arg# ~arg]
+     (if ~condition
+       (-> arg# ~@body)
+       arg#)))
 
 (defmacro when->
   "A `when` form that can appear in a request thread.
@@ -23,10 +46,19 @@
           (+ 1)))
    => 2"
   [arg condition & body]
-  `(let [arg# ~arg]
-     (if ~condition
-       (-> arg# ~@body)
-       arg#)))
+  (when- arg condition body))
+
+(defmacro when->>
+  "A `when` form that can appear in a request thread.
+   eg.
+      (->> 1
+         (when->> true
+           (+ 1)))
+   => 2"
+  [condition & body]
+  (let [arg (last body)
+        body (butlast body)]
+    (when- arg condition body)))
 
 (defmacro when-not->
   "A `when-not` form that can appear in a request thread.
@@ -41,6 +73,40 @@
        (-> arg# ~@body)
        arg#)))
 
+(defn- when-not-
+  [arg condition body]
+  `(let [arg# ~arg]
+     (if-not ~condition
+       (-> arg# ~@body)
+       arg#)))
+
+(defmacro when-not->
+  "A `when-not` form that can appear in a request thread.
+   eg.
+      (-> 1
+        (when-not-> true
+          (+ 1)))
+   => 1"
+  [arg condition & body]
+  (when-not- arg condition body))
+
+(defmacro when-not->>
+  "A `when-not` form that can appear in a request thread.
+   eg.
+      (->> 1
+         (when-not->> true
+           (+ 1)))
+   => 1"
+  [condition & body]
+  (let [arg (last body)
+        body (butlast body)]
+    (when-not- arg condition body)))
+
+(defn- let-
+  [arg binding body]
+  `(let ~binding
+     (-> ~arg ~@body)))
+
 (defmacro let->
   "A `let` form that can appear in a request thread.
    eg.
@@ -49,8 +115,19 @@
           (+ a)))
    => 2"
   [arg binding & body]
-  `(let ~binding
-     (-> ~arg ~@body)))
+  (let- arg binding body))
+
+(defmacro let->>
+  "A `let` form that can appear in a request thread.
+   eg.
+      (->> 1
+         (let->> [a 1]
+           (+ a)))
+   => 2"
+  [binding & body]
+  (let [arg (last body)
+        body (butlast body)]
+    (let- arg binding body)))
 
 (defmacro binding->
   "A `binding` form that can appear in a request thread.
@@ -90,7 +167,7 @@
         (if ~condition
           (-> arg# ~form)
           arg#)))
-  ([arg condition form else-form ]
+  ([arg condition form else-form]
      `(let [arg# ~arg]
         (if ~condition
           (-> arg# ~form)
