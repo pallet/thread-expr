@@ -349,11 +349,11 @@
   [arg f & arg-coll]
   (apply-map- arg f arg-coll))
 
-(defmacro apply-map->
+(defmacro apply-map->>
   "Apply in a threaded expression.
    e.g.
-      (-> :a
-        (apply-map-> hash-map 1 {:b 2}))
+      (->> :a
+         (apply-map->> hash-map 1 {:b 2}))
    => {:a 1 :b 2}"
   [f & arg-coll]
   (let [arg (last arg-coll)
