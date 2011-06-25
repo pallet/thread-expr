@@ -7,16 +7,49 @@ and [annotated source](http://pallet.github.com/thread-expr/marginalia/uberdoc.h
 
 ## Examples
 
+**Threaded arg exposure:**
+
+`arg->` exposes the threaded arg, binding it to the supplied variable. For example:
+
 ```clojure
 (-> 2
-  (arg-> [x]
-    (* (inc x))))
+   (arg-> [x]
+     (* (inc x))))
+
+;=> 6
 ```
+
+Expands to:
+
+```clojure
+(-> 2 
+   ((fn [arg] (let [x arg] (-> arg (* inc x))))))
+
+;=> 6
+```
+Note the extra set of parens in the expansion; the threading macro feeds the current argument in as `arg`, binds it to the supplied var using `let`, and resumes threading for all forms inside of `arg->`.
+
+**Threaded list comprehension:**
+
+The following use of `for->`:
 
 ```clojure
 (-> 1
-  (for-> [x [1 2 3]]
-    (+ x)))
+   (for-> [x [1 2 3]]
+     (+ x)))
+
+;=> 7
+```
+
+Expands to:
+
+```clojure
+(-> 1
+   (+ 1)
+   (+ 2)
+   (+ 3))
+
+;=> 7
 ```
 
 ## Installation
