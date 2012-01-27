@@ -1,6 +1,6 @@
 (ns pallet.thread-expr
   "Macros that can be used in an expression thread."
-  (:require [clojure.contrib.macro-utils :as macro]))
+  (:require [clojure.tools.macro :as macro]))
 
 (letfn [(for- [threader arg seq-exprs body]
           `(reduce #(%2 %1)
@@ -379,7 +379,7 @@
             (+ x y)))
         (+ 1))
  => 12
-    
+
       (--> 5
            (expose-request-as [x] (+ x))
            (+ 1))
@@ -419,7 +419,7 @@
              (+ x y)))
          (+ 1))
  => 12
-    
+
       (-->> 5
             (expose-request-as [x] (+ x))
             (+ 1))
