@@ -14,6 +14,7 @@
         (for-> [x [1 2 3]]
           (+ x)))
    => 7"
+    {:indent 1}
     [arg seq-exprs & body]
     (for- 'clojure.core/-> arg seq-exprs body))
 
@@ -24,6 +25,7 @@
          (for->> [x [1 2 3]]
            (+ x)))
    => 7"
+    {:indent 1}
     [seq-exprs & body]
     (let [arg (last body)
           body (butlast body)]
@@ -42,6 +44,7 @@
         (when-> true
           (+ 1)))
    => 2"
+    {:indent 1}
     [arg condition & body]
     (when- 'clojure.core/-> arg condition body))
 
@@ -52,6 +55,7 @@
          (when->> true
            (+ 1)))
    => 2"
+    {:indent 1}
     [condition & body]
     (let [arg (last body)
           body (butlast body)]
@@ -71,6 +75,7 @@
         (when-not-> true
           (+ 1)))
    => 1"
+    {:indent 1}
     [arg condition & body]
     (when-not- 'clojure.core/-> arg condition body))
 
@@ -81,6 +86,7 @@
          (when-not->> true
            (+ 1)))
    => 1"
+    {:indent 1}
     [condition & body]
     (let [arg (last body)
           body (butlast body)]
@@ -98,6 +104,7 @@
         (let-> [a 1]
           (+ a)))
    => 2"
+    {:indent 1}
     [arg binding & body]
     (let- 'clojure.core/-> arg binding body))
 
@@ -108,6 +115,7 @@
          (let->> [a 1]
            (+ a)))
    => 2"
+    {:indent 1}
     [binding & body]
     (let [arg (last body)
           body (butlast body)]
@@ -126,6 +134,7 @@
         (binding-> [*a* 1]
           (+ *a*)))
    => 2"
+    {:indent 1}
     [arg bindings & body]
     (binding- 'clojure.core/-> arg bindings body))
 
@@ -137,6 +146,7 @@
          (binding->> [*a* 1]
            (+ *a*)))
    => 2"
+    {:indent 1}
     [bindings & body]
     (let [arg (last body)
           body (butlast body)]
@@ -156,6 +166,7 @@
         (when-let-> [a 1]
           (+ a)))
    => 2"
+    {:indent 1}
     [arg binding & body]
     (when-let- 'clojure.core/-> arg binding body))
 
@@ -166,6 +177,7 @@
          (when-let->> [a 1]
            (+ a)))
    => 2"
+    {:indent 1}
     [binding & body]
     (let [arg (last body)
           body (butlast body)]
@@ -191,6 +203,7 @@
           (+ 1)
           (+ 2)))
    => 2"
+    {:indent 1}
     ([arg condition form]
        (if- 'clojure.core/-> arg condition form))
     ([arg condition form else-form]
@@ -204,6 +217,7 @@
            (+ 1)
            (+ 2)))
    => 2"
+    {:indent 1}
     ([condition form arg]
        (if- 'clojure.core/->> arg condition form))
     ([condition form else-form arg]
@@ -229,6 +243,7 @@
           (+ 1)
           (+ 2)))
    => 3"
+    {:indent 1}
     ([arg condition form]
        (if-not- 'clojure.core/-> arg condition form))
     ([arg condition form else-form]
@@ -259,6 +274,7 @@
          (arg-> [x] (+ x)))
 
        => 2"
+    {:indent 1}
     [arg [sym] & body]
     (arg- 'clojure.core/-> arg sym body))
 
@@ -269,6 +285,7 @@
           (arg->> [x] (+ x)))
 
        => 2"
+    {:indent 1}
     [[sym] & body]
     (let [arg (last body)
           body (butlast body)]
@@ -289,6 +306,7 @@
         (let-with-arg-> val [a 1]
           (+ a val)))
    => 3"
+    {:indent 2}
     [arg arg-symbol binding & body]
     (let-with-arg- 'clojure.core/-> arg arg-symbol binding body))
 
@@ -301,6 +319,7 @@
          (let-with-arg->> val [a 1]
            (+ a val)))
    => 3"
+    {:indent 2}
     [arg-symbol binding & body]
     (let [arg (last body)
           body (butlast body)]
