@@ -3,8 +3,8 @@
   <modelVersion>4.0.0</modelVersion>
   <parent>
     <groupId>org.cloudhoist</groupId>
-    <artifactId>pallet-pom</artifactId>
-    <version>0.7.2</version>
+    <artifactId>parent-pom</artifactId>
+    <version>0.1.2-SNAPSHOT</version>
   </parent>
   <groupId>org.cloudhoist</groupId>
   <artifactId>thread-expr</artifactId>
@@ -25,6 +25,18 @@
   </scm>
 
   <build>
+    <sourceDirectory>src</sourceDirectory>
+    <testSourceDirectory>test</testSourceDirectory>
+    <resources>
+      <resource>
+        <directory>resources</directory>
+      </resource>
+    </resources>
+    <testResources>
+      <testResource>
+        <directory>test-resources</directory>
+      </testResource>
+    </testResources>
     <plugins>
       <plugin>
         <groupId>org.cloudhoist.plugin</groupId>
@@ -38,6 +50,7 @@
     <dependency>
       <groupId>org.clojure</groupId>
       <artifactId>clojure</artifactId>
+      <version>${clojure.version}</version>
     </dependency>
     <dependency>
       <groupId>org.clojure</groupId>
@@ -69,17 +82,5 @@
       <url>http://sritchie.github.com/</url>
     </contributor>
   </contributors>
-
-  <!-- make sure we can find the parent pom -->
-  <repositories>
-    <repository>
-      <snapshots>
-        <enabled>false</enabled>
-      </snapshots>
-      <id>sonatype-nexus-releases</id>
-      <name>Sonatype Nexus Releases</name>
-      <url>http://oss.sonatype.org/content/repositories/releases</url>
-    </repository>
-  </repositories>
 
 </project>
