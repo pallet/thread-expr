@@ -61,7 +61,7 @@ Installation is with maven or your favourite maven repository aware build tool.
 
 ### lein/cake project.clj
 
-    :dependencies [[org.cloudhoist/thread-expr "1.1.0"]]
+    :dependencies [[org.cloudhoist/thread-expr "1.2.0"]]
     :repositories {"sonatype"
                    "http://oss.sonatype.org/content/repositories/releases"}
 
@@ -71,7 +71,7 @@ Installation is with maven or your favourite maven repository aware build tool.
       <dependency>
         <groupId>org.cloudhoist</groupId>
         <artifactId>thread-expr</artifactId>
-        <version>1.1.0</version>
+        <version>1.2.0</version>
       </dependency>
     <dependencies>
 
@@ -86,4 +86,4 @@ Installation is with maven or your favourite maven repository aware build tool.
 
 Licensed under [EPL](http://www.eclipse.org/legal/epl-v10.html)
 
-Copyright 2011 Hugo Duncan.
+Copyright 2011, 2012 Hugo Duncan.
