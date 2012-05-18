@@ -49,7 +49,7 @@
 (deftest let->>test
   (is (= 2) (->> 1 (let->> [a 1] (+ a)))))
 
-(def *a* 0)
+(def ^{:dynamic true} *a* 0)
 (deftest binding->test
   (is (= 2) (-> 1 (binding-> [*a* 1] (+ *a*)))))
 

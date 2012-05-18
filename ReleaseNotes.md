@@ -1,6 +1,13 @@
 # thread-expr Release Notes
 
-The latest release is 1.1.0.
+The latest release is 1.2.0.
+
+## 1.2.0
+
+- Add indentation metadata to macros
+  This ensures the macros indent properly (at least in ritz).
+
+- make 1.3 compatible while maintaining 1.2 backwards compatibility
 
 ## 1.1.0
 
