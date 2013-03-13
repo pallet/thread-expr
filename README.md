@@ -2,14 +2,17 @@
 
 A library containing macros for use in clojure threading expressions (using ->).
 
-See [reference documentation](http://pallet.github.com/thread-expr/autodoc/index.html)
-and [annotated source](http://pallet.github.com/thread-expr/marginalia/uberdoc.html).
+See
+[reference documentation](http://pallet.github.com/thread-expr/autodoc/index.html)
+and
+[annotated source](http://pallet.github.com/thread-expr/marginalia/uberdoc.html).
 
 ## Examples
 
 **Threaded arg exposure:**
 
-`arg->` exposes the threaded arg, binding it to the supplied variable. For example:
+`arg->` exposes the threaded arg, binding it to the supplied variable. For
+example:
 
 ```clojure
 (-> 2
@@ -27,7 +30,10 @@ Expands to:
 
 ;=> 6
 ```
-Note the extra set of parens in the expansion; the threading macro feeds the current argument in as `arg`, binds it to the supplied var using `let`, and resumes threading for all forms inside of `arg->`.
+
+Note the extra set of parens in the expansion; the threading macro feeds the
+current argument in as `arg`, binds it to the supplied var using `let`, and
+resumes threading for all forms inside of `arg->`.
 
 **Threaded list comprehension:**
 
@@ -55,15 +61,14 @@ Expands to:
 ## Installation
 
 thread-expr is distributed as a jar, and is available in the
-[sonatype repository](http://oss.sonatype.org/content/repositories/releases/org/cloudhoist).
+[clojars repository](http://clojars.org/com.palletops/thread-expr).
 
-Installation is with maven or your favourite maven repository aware build tool.
+Installation is with leiningen or your favourite maven repository aware build
+tool.
 
 ### lein/cake project.clj
 
-    :dependencies [[org.cloudhoist/thread-expr "1.2.0"]]
-    :repositories {"sonatype"
-                   "http://oss.sonatype.org/content/repositories/releases"}
+    :dependencies [[com.palletops/thread-expr "1.2.0"]]
 
 ### maven pom.xml
 
@@ -77,8 +82,8 @@ Installation is with maven or your favourite maven repository aware build tool.
 
     <repositories>
       <repository>
-        <id>sonatype</id>
-        <url>http://oss.sonatype.org/content/repositories/releases</url>
+        <id>clojars</id>
+        <url>http://clojars.org/repo</url>
       </repository>
     </repositories>
 
@@ -86,4 +91,4 @@ Installation is with maven or your favourite maven repository aware build tool.
 
 Licensed under [EPL](http://www.eclipse.org/legal/epl-v10.html)
 
-Copyright 2011, 2012 Hugo Duncan.
+Copyright 2011, 2012, 2013 Hugo Duncan.
