@@ -68,7 +68,7 @@ tool.
 
 ### lein/cake project.clj
 
-    :dependencies [[com.palletops/thread-expr "1.2.0"]]
+    :dependencies [[com.palletops/thread-expr "1.3.0"]]
 
 ### maven pom.xml
 
@@ -76,7 +76,7 @@ tool.
       <dependency>
         <groupId>org.cloudhoist</groupId>
         <artifactId>thread-expr</artifactId>
-        <version>1.2.0</version>
+        <version>1.3.0</version>
       </dependency>
     <dependencies>
 
