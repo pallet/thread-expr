@@ -1,6 +1,11 @@
 # thread-expr Release Notes
 
-The latest release is 1.2.0.
+The latest release is 1.3.0.
+
+## 1.3.0
+
+- Use lein as the build tool and deploy to clojars
+  Deploys with the com.palletops group id.
 
 ## 1.2.0
 
